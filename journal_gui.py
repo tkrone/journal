@@ -2,6 +2,7 @@ import tkinter as tk
 
 
 class Application(tk.Frame):
+
     """Represents the GUI of the TO-DO list/journal."""
     def __init__(self, master=None):
         """Constructor creates the widgets"""
@@ -9,6 +10,7 @@ class Application(tk.Frame):
         self.master = master
         self.pack()
         self.create_widgets()
+        self.item = []
 
     def create_widgets(self):
         """Creates and packs the entry field and 'add' button."""
@@ -18,10 +20,16 @@ class Application(tk.Frame):
         self.add_entry = tk.Button(self, text="Add Item", command=self.pack_entry)
         self.add_entry.pack()
 
+        self.delete = tk.Button(self, text="Delete Entry", command=self.delete_entry)
+        self.delete.pack()
+
     def pack_entry(self):
         """Adds the text in the entry field to the frame after the add_entry button is clicked."""
-        self.item = tk.Label(self, text=self.log_entry.get())
-        self.item.pack()
+        self.item.append(tk.Label(self, text=self.log_entry.get()))
+        self.item[0].pack()
+
+    def delete_entry(self):
+        self.item[0].destroy()
 
 root = tk.Tk()
 app = Application(master=root)
