@@ -1,6 +1,6 @@
 import tkinter as tk
 
-
+#TODO add listbox
 class Application(tk.Frame):
 
     """Represents the GUI of the TO-DO list/journal."""
@@ -26,10 +26,11 @@ class Application(tk.Frame):
     def pack_entry(self):
         """Adds the text in the entry field to the frame after the add_entry button is clicked."""
         self.item.append(tk.Label(self, text=self.log_entry.get()))
-        self.item[0].pack()
+        self.item[len(self.item)-1].pack()
 
     def delete_entry(self):
-        self.item[0].destroy()
+        removable = self.item.pop()
+        removable.destroy()
 
 root = tk.Tk()
 app = Application(master=root)
